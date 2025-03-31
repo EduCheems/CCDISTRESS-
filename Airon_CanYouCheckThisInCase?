@@ -48,7 +48,6 @@ int CheckBoard(char grid[SIZE][SIZE][6]){
 		for (j = 0; j < SIZE; j++){
 			if (strcmp(grid[i][j], EMPTY) != 0){
 				count++;
-				printf("%d", count); // checking purposes
 			}
 		}
 	}
@@ -128,6 +127,13 @@ int playGame() {
         }
         
         printGrid(grid);
+
+        if (CheckBoard(grid)) {
+            printGrid(grid);
+            printf("DOS%s wins!\n", DOS);
+            over = 0; 
+            return over;  
+        }
         
         do {
         	
@@ -158,6 +164,13 @@ int playGame() {
         }
         
         printGrid(grid);
+
+        if (CheckBoard(grid)) {
+            printGrid(grid);
+            printf("DOS%s wins!\n", DOS);
+            over = 0; 
+            return over;  
+        }
         
         do {
         	
@@ -179,13 +192,6 @@ int playGame() {
         
         printf("DOS %s removes the move at position (%d, %d)\n", DOS, row, col);
     	strcpy(grid[row][col], EMPTY);
-        
-        if (CheckBoard(grid)) {
-            printGrid(grid);
-            printf("DOS%s wins!\n", DOS);
-            over = 0; 
-            return over;  
-        }
 
     }
     
