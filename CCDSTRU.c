@@ -263,7 +263,6 @@ int linearSearch(int arr[], int size, int key) {
              [5]; // name is a string array that contains the names of the players
     int W[4][4];  // W is the Winning Sets
     int Uno[16], Tres[16]; // players
-    int pos;               // position selected by a player
     int turn = 1;          // signals whose turn it is
     int go = 0;            // signals whose turn it is
     int over = 0;          // signals if game is over
