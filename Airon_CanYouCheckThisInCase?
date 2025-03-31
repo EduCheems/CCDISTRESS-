@@ -70,7 +70,7 @@ int CheckIfWin(char grid[SIZE][SIZE][6], char *Player) {
 	}
 
     
-    else if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[1][1], Player) == 0 && strcmp(grid[2][2], Player) == 0 && strcmp(grid[3][3], Player) == 0) {
+    if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[1][1], Player) == 0 && strcmp(grid[2][2], Player) == 0 && strcmp(grid[3][3], Player) == 0) {
     	Win = 1; 
 		return Win;
 	}
@@ -80,21 +80,6 @@ int CheckIfWin(char grid[SIZE][SIZE][6], char *Player) {
 	}
 	
     return Win;
-}
-
-void DosTurn(char grid[SIZE][SIZE][6]) {
-    int row, col;
-    
-    printf("DOS %s is choosing a position to remove...\n", DOS); 
-    
-    do {
-        row = rand() % SIZE;
-        col = rand() % SIZE;
-        
-    } while (strcmp(grid[row][col], EMPTY) == 0);
-    
-    printf("DOS %s removes the move at position (%d, %d)\n", DOS, row, col);
-    strcpy(grid[row][col], EMPTY);
 }
 
 int playGame() {
@@ -184,13 +169,14 @@ int playGame() {
 				}
 	        }
 			 
-        } while (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0); 
+        } while (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) == 0); 
         
-        strcpy(grid[row][col], EMPTY); 
+        printf("DOS %s removes the move at position (%d, %d)\n", DOS, row, col);
+    	strcpy(grid[row][col], EMPTY);
         
         if (CheckBoard(grid)) {
             printGrid(grid);
-            printf("UNO%s wins!\n", UNO);
+            printf("DOS%s wins!\n", DOS);
             over = 0; 
         }
 
