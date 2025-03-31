@@ -180,7 +180,7 @@ int playGame() {
         printf("DOS %s removes the move at position (%d, %d)\n", DOS, row, col);
     	strcpy(grid[row][col], EMPTY);
         
-        if (!CheckBoard(grid)) {
+        if (CheckBoard(grid)) {
             printGrid(grid);
             printf("DOS%s wins!\n", DOS);
             over = 0; 
