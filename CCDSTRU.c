@@ -106,7 +106,7 @@ int linearSearch(int arr[], int size, int key) {
     int win = 0;
     int ctr = 0;
     int set = 0;
-    int i, j;
+    int i;
   
     // if player only has 4 positions, then there's a chance to win
     // if player has more than 4 positions, then automatically still not win
