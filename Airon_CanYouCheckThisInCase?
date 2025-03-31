@@ -57,7 +57,7 @@ int CheckIfWin(char grid[SIZE][SIZE][6], char *Player) {
 	
 	int i, Win = 0; 
 	
-    for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++) { //I think may kulang dito but yeah tinetest ko pa siya ule 
         if (strcmp(grid[i][0], Player) == 0 && strcmp(grid[i][1], Player) == 0 && strcmp(grid[i][2], Player) == 0 && strcmp(grid[i][3], Player) == 0) {
         	Win = 1; 
 			return Win;	
@@ -129,15 +129,21 @@ int playGame() {
         
         strcpy(grid[row][col], TRES);
         
+        if (CheckIfWin(grid, TRES)) {
+            printGrid(grid);
+            printf("TRES%s wins!\n", TRES);
+            return 0; 
+        }
+        
         printGrid(grid);
         
         over = CheckBoard(grid); 
         
         do {
         	
-        printf("UNO %s's turn. Enter column (1-4): ", UNO);
+        printf("UNO %s's turn. Enter column (0-3): ", UNO);
         scanf("%d", &row);
-        printf("UNO %s's turn. Enter row (1-4): ", UNO);
+        printf("UNO %s's turn. Enter row (0-3): ", UNO);
         scanf("%d", &col);
         
 	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0) {
@@ -148,10 +154,17 @@ int playGame() {
 					printf("That position's been taken already. Please choose another one\n");
 				}
 	        }
+	        
 			 
         } while (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0); 
         
         strcpy(grid[row][col], UNO);
+        
+        if (CheckIfWin(grid, TRES)) {
+            printGrid(grid);
+            printf("TRES%s wins!\n", TRES);
+            return 0; 
+        }
         
         DosTurn(grid);
         
