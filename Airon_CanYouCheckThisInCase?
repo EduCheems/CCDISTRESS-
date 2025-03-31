@@ -129,8 +129,7 @@ int playGame() {
         printGrid(grid);
 
         if (CheckBoard(grid)) {
-            printGrid(grid);
-            printf("DOS%s wins!\n", DOS);
+            printf("No more positions left!\nDOS%s wins!\n", DOS);
             over = 0; 
             return over;  
         }
@@ -166,8 +165,7 @@ int playGame() {
         printGrid(grid);
 
         if (CheckBoard(grid)) {
-            printGrid(grid);
-            printf("DOS%s wins!\n", DOS);
+            printf("No more positions left!\nDOS%s wins!\n", DOS);
             over = 0; 
             return over;  
         }
@@ -194,8 +192,6 @@ int playGame() {
     	strcpy(grid[row][col], EMPTY);
 
     }
-    
-    printf("No more positions left!\nDOS%s wins!\n", DOS);
     
     return 0; 
 }
