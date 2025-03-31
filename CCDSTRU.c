@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <stdio.h>
 
 #define GRIDSIZE 4
 #define UNO "('o')"
