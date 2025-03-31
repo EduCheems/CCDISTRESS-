@@ -43,7 +43,7 @@ int CheckBoard(char grid[SIZE][SIZE][6]){
 	int i, j, IsEmpty = -1; 
 	for (i = 0; i < SIZE; i++){
 		for (j = 0; j < SIZE; j++){
-			if (strcmp(grid[SIZE][SIZE], EMPTY) != 0){
+			if (strcmp(grid[i][j], EMPTY) != 0){
 				IsEmpty = 1; 
 				return IsEmpty; 
 			}
@@ -95,7 +95,7 @@ void DosTurn(char grid[SIZE][SIZE][6]) {
     strcpy(grid[row][col], EMPTY);
 }
 
-void playGame() {
+int playGame() {
 	
     char grid[SIZE][SIZE][6];
     initializeGrid(grid);
@@ -160,20 +160,19 @@ void playGame() {
         if (CheckIfWin(grid, TRES)) {
             printGrid(grid);
             printf("TRES%s wins!\n", TRES);
-            over = 0;
+            return 0; 
         }
         
         else if (CheckIfWin(grid, UNO)) {
             printGrid(grid);
             printf("UNO%s wins!\n", UNO);
-            over = 0; 
+            return 0; 
         }
         
         else {
             printGrid(grid);
             printf("DOS%s wins! No more moves left.\n", DOS);
-            
-            over = 0; 
+        	return 0; 
         }
 }
 
