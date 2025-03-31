@@ -47,7 +47,8 @@ int CheckBoard(char grid[SIZE][SIZE][6]){
 	for (i = 0; i < SIZE; i++){
 		for (j = 0; j < SIZE; j++){
 			if (strcmp(grid[i][j], EMPTY) != 0){
-				count++; 
+				count++;
+				printf("%d", count); // checking purposes
 			}
 		}
 	}
