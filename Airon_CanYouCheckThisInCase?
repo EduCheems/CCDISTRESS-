@@ -120,6 +120,7 @@ int playGame() {
             printGrid(grid);
             printf("TRES%s wins!\n", TRES);
             over = 0; 
+            return over; 
         }
         
         printGrid(grid);
@@ -149,6 +150,7 @@ int playGame() {
             printGrid(grid);
             printf("UNO%s wins!\n", UNO);
             over = 0; 
+            return over; 
         }
         
         printGrid(grid);
@@ -178,9 +180,9 @@ int playGame() {
             printGrid(grid);
             printf("DOS%s wins!\n", DOS);
             over = 0; 
+            return over;  
         }
 
-		over = CheckIfWin(grid, TRES)|| CheckIfWin(grid, UNO)|| !CheckBoard(grid); 
     }
     
     printf("No more positions left!\nDOS%s wins!\n", DOS);
