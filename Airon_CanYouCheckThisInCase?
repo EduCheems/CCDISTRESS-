@@ -43,17 +43,20 @@ void printGrid(char grid[SIZE][SIZE][6]) {
 
 int CheckBoard(char grid[SIZE][SIZE][6]){
 	
-	int i, j, IsEmpty = -1; 
+	int i, j, IsFull = -1, count = 0; 
 	for (i = 0; i < SIZE; i++){
 		for (j = 0; j < SIZE; j++){
 			if (strcmp(grid[i][j], EMPTY) != 0){
-				IsEmpty = 1; 
-				return IsEmpty; 
+				count++; 
 			}
 		}
 	}
-	IsEmpty = 0; 
-	return IsEmpty; 
+
+	if (count == 16)
+		IsFull = 1;
+	else
+		IsFull = 0; 
+	return IsFull; 
 }
 
 int CheckIfWin(char grid[SIZE][SIZE][6], char *Player) {
