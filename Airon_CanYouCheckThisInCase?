@@ -89,7 +89,6 @@ int playGame() {
 	
     char grid[SIZE][SIZE][6];
     initializeGrid(grid);
-    int moves = 0;
     srand(time(0));
     int over = 1; 
     
