@@ -58,7 +58,7 @@ int CheckBoard(char grid[SIZE][SIZE][6]){
 
 int CheckIfWin(char grid[SIZE][SIZE][6], char *Player) {
 	
-	Win = 0; 
+	int Win = 0; 
 	
     if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[0][1], Player) == 0 && strcmp(grid[0][2], Player) == 0 && strcmp(grid[0][3], Player) == 0) {
         	Win = 1; 
