@@ -207,8 +207,11 @@ int playGame() {
 }
 
 int main() {
-	
-    playGame();	//start game
+	int over;
+    over = playGame();	//start game
+
+	if (!over)
+		printf("\nThank you for playing!");
     return 0;
     
 }
