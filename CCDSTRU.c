@@ -72,79 +72,41 @@ int CheckBoard(char grid[SIZE][SIZE][6]){
 int CheckIfWin(char grid[SIZE][SIZE][6], char *Player) {
 	
 	int Win = 0;
-  int count;
-  int i, j;
+	int i, j;
+	int count = 0; 
 	
-    if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[0][1], Player) == 0 && strcmp(grid[0][2], Player) == 0 && strcmp(grid[0][3], Player) == 0) {		//check horizontal rows
-
-      count = 0;
-      
-      for (i = 1; i < SIZE; i++){
-        for (j = 0; j < SIZE; j++){
-          if (strcmp(grid[i][j], Player) == 0)
-            count++;
-        }
-      }
-
-      if (count == 0)
-        Win = 1; 
-      
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++){
+			if (strcmp(grid[i][j], Player) == 0){
+				count++; 
+			}
+		}
+	}
+	
+	if (count != 4){
+				return Win; //ala na di siya panalo hahaha 
+	} 
+			
+    if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[0][1], Player) == 0 && strcmp(grid[0][2], Player) == 0 && strcmp(grid[0][3], Player) == 0) {
+        	Win = 1; 
 			return Win;	
 	}
     else if (strcmp(grid[3][0], Player) == 0 && strcmp(grid[3][1], Player) == 0 && strcmp(grid[3][2], Player) == 0 && strcmp(grid[3][3], Player) == 0) {
-        	
-      count = 0;
-      
-      for (i = 0; i < SIZE - 1; i++){
-        for (j = 0; j < SIZE; j++){
-          if (strcmp(grid[i][j], Player) == 0)
-            count++;
-        }
-      }
-
-      if (count == 0)
-        Win = 1; 
-      
+        	Win = 1; 
 			return Win;	
 	}
 
     
-    if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[1][1], Player) == 0 && strcmp(grid[2][2], Player) == 0 && strcmp(grid[3][3], Player) == 0) {		//check diagonally from top-left to bottom-right
-    	
-      count = 0;
-      
-      for (i = 1; i < SIZE; i++){
-        for (j = 0; j < SIZE; j++){
-          if (i != j)
-            if (strcmp(grid[i][j], Player) == 0)
-              count++;
-        }
-      }
-
-      if (count == 0)
-        Win = 1; 
-      
-			return Win;
+    if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[1][1], Player) == 0 && strcmp(grid[2][2], Player) == 0 && strcmp(grid[3][3], Player) == 0) {
+    	Win = 1; 
+		return Win;
 	}
-    else if (strcmp(grid[0][3], Player) == 0 && strcmp(grid[1][2], Player) == 0 && strcmp(grid[2][1], Player) == 0 && strcmp(grid[3][0], Player) == 0) { 	//check diagonally from top-right to bottom-left
-    	
-      count = 0;
-      
-      for (i = 1; i < SIZE; i++){
-        for (j = 0; j < SIZE; j++){
-          if ((i != 0 && j != 3) && (i != 1 && j != 2) && (i != 2 && j != 1) && (i != 3 && j != 0))
-            if (strcmp(grid[i][j], Player) == 0)
-              count++;
-        }
-      }
-
-      if (count == 0)
-        Win = 1; 
-      
-			return Win;
+    else if (strcmp(grid[0][3], Player) == 0 && strcmp(grid[1][2], Player) == 0 && strcmp(grid[2][1], Player) == 0 && strcmp(grid[3][0], Player) == 0) { 
+    	Win = 1; 
+		return Win;
 	}
 	
-    return Win;		//return 0 if no win conditions yet
+    return Win;
 }
 
 //game loop
