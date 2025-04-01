@@ -252,6 +252,20 @@ int playGame() {
         printf("DOS %s removes the move at position (%d, %d)\n", DOS, row, col);
     	strcpy(grid[row][col], EMPTY);		//remove DOS from the grid
 
+	if (CheckIfWin(grid, TRES)) {		//check if TRES wins
+            printGrid(grid);
+            printf("TRES%s wins!\n", TRES);
+            over = 0; 				//game ends
+            return over; 
+        }
+
+	if (CheckIfWin(grid, UNO)) {		//check if UNO wins
+            printGrid(grid);
+            printf("UNO%s wins!\n", UNO);
+            over = 0;				//game ends
+            return over; 
+        }
+
     }
     
     return 0; 
