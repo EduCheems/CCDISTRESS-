@@ -162,9 +162,9 @@ int playGame() {
         
         do {			//UNO's turn (same procedure)
         	
-        printf("UNO %s's turn. Enter row (0-3): ", UNO);
+        printf("UNO %s's turn. Enter row (1-4): ", UNO);
         scanf("%d", &row);
-        printf("UNO %s's turn. Enter column (0-3): ", UNO);
+        printf("UNO %s's turn. Enter column (1-4): ", UNO);
         scanf("%d", &col);
 
 	row = row - 1;
@@ -201,9 +201,9 @@ int playGame() {
         
         do {			//DOS's turn
         	
-        printf("DOS %s's turn. Choose the row number of position you want to remove (0-3): ", DOS);
+        printf("DOS %s's turn. Choose the row number of position you want to remove (1-4): ", DOS);
         scanf("%d", &row);
-        printf("DOS %s's turn. Choose the column number of position you want to remove (0-3): ", DOS);
+        printf("DOS %s's turn. Choose the column number of position you want to remove (1-4): ", DOS);
         scanf("%d", &col);
 
 	row = row - 1;
