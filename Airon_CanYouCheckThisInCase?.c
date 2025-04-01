@@ -28,11 +28,11 @@ void printGrid(char grid[SIZE][SIZE][6]) {
         printf("+ --- + --- + --- + --- +\n"); 		//row separator
         for (int j = 0; j < SIZE; j++) { 		//loop through each column
             printf("|");
-            if (strcmp(grid[i][j], UNO) == 0) {		//print appropriate symbol
-            	printf("\x1b[32m%s\x1b[0m", UNO);	
+            if (strcmp(grid[i][j], UNO) == 0) {		//print appropriate symbol and its color
+            	printf("\x1b[32m%s\x1b[0m", UNO);	// green for UNO
 			}
             else if (strcmp(grid[i][j], TRES) == 0){
-            	printf("\x1b[34m%s\x1b[0m", TRES);
+            	printf("\x1b[34m%s\x1b[0m", TRES);	// blue for TRES
 			}
             else {
             	printf("%s", EMPTY);			//print empty cell if a player didn't move there
