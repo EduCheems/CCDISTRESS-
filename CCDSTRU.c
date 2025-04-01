@@ -113,21 +113,24 @@ int CheckIfWin(char grid[SIZE][SIZE][6], char *Player) {
 int playGame() {
 	
     char grid[SIZE][SIZE][6];
+    int over = 1;
+    int row, col;     //stores player's move
+
     initializeGrid(grid);
-    int over = 1; 
     
     while (over) {
     	
         printGrid(grid);
-        int row, col;		//stores player's move
-
+       
         do {			//TRES's turn
         	
-        printf("TRES %s's turn. Enter row (0-3): ", TRES);
+        printf("TRES %s's turn. Enter row (1-4): ", TRES);
         scanf("%d", &row);
-        
-        printf("TRES %s. Enter column (0-3): ", TRES); 
+        printf("TRES %s. Enter column (1-4): ", TRES); 
         scanf("%d", &col); 
+
+	row = row - 1;
+	col = col - 1;
         
 	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0) {		//validate move
 	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
@@ -159,10 +162,13 @@ int playGame() {
         
         do {			//UNO's turn (same procedure)
         	
-        printf("UNO %s's turn. Enter row (0-3): ", UNO);
+        printf("UNO %s's turn. Enter row (1-4): ", UNO);
         scanf("%d", &row);
-        printf("UNO %s's turn. Enter column (0-3): ", UNO);
+        printf("UNO %s's turn. Enter column (1-4): ", UNO);
         scanf("%d", &col);
+
+	row = row - 1;
+	col = col - 1;
         
 	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0) {
 	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
@@ -195,10 +201,13 @@ int playGame() {
         
         do {			//DOS's turn
         	
-        printf("DOS %s's turn. Choose the row number of position you want to remove (0-3): ", DOS);
+        printf("DOS %s's turn. Choose the row number of position you want to remove (1-4): ", DOS);
         scanf("%d", &row);
-        printf("DOS %s's turn. Choose the column number of position you want to remove (0-3): ", DOS);
+        printf("DOS %s's turn. Choose the column number of position you want to remove (1-4): ", DOS);
         scanf("%d", &col);
+
+	row = row - 1;
+	col = col - 1;
         
 	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) == 0) {
 	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
