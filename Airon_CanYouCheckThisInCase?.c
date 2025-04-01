@@ -11,10 +11,10 @@
 
 //initialize grid to be empty
 void initializeGrid(char grid[SIZE][SIZE][6]) {
-
+	int i, j;
 	//loop through the grid and set all positions to empty
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
             strcpy(grid[i][j], EMPTY); //copy empty to each cell
         }
     }
@@ -23,10 +23,11 @@ void initializeGrid(char grid[SIZE][SIZE][6]) {
 
 //print current state of the grid
 void printGrid(char grid[SIZE][SIZE][6]) {
+	int i, j;
 	
-    for (int i = 0; i < SIZE; i++) { 			//loop through each row
+    for (i = 0; i < SIZE; i++) { 			//loop through each row
         printf("+ --- + --- + --- + --- +\n"); 		//row separator
-        for (int j = 0; j < SIZE; j++) { 		//loop through each column
+        for (j = 0; j < SIZE; j++) { 			//loop through each column
             printf("|");
             if (strcmp(grid[i][j], UNO) == 0) {		//print appropriate symbol and its color
             	printf("\x1b[32m%s\x1b[0m", UNO);	// green for UNO
@@ -47,7 +48,10 @@ void printGrid(char grid[SIZE][SIZE][6]) {
 //check if the board is full (no empty spaces left)
 int CheckBoard(char grid[SIZE][SIZE][6]){
 	
-	int i, j, IsFull = -1, count = 0; 
+	int i, j;
+	int IsFull = -1;	// IsFull signals whether board is full or not (1 for full, 0 for not)
+	int count = 0; 		// counts cells that are not empty
+	
 	for (i = 0; i < SIZE; i++){
 		for (j = 0; j < SIZE; j++){
 			if (strcmp(grid[i][j], EMPTY) != 0){	//count cells that are not empty
@@ -60,6 +64,7 @@ int CheckBoard(char grid[SIZE][SIZE][6]){
 		IsFull = 1;
 	else
 		IsFull = 0; 				//board is not full
+	
 	return IsFull; 
 }
 
