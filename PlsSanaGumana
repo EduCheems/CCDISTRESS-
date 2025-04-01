@@ -1,0 +1,225 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
+#define SIZE 4
+#define UNO "('o')"
+#define TRES "(-.-)"
+#define DOS "(>u<)"
+#define EMPTY "     "
+
+void initializeGrid(char grid[SIZE][SIZE][6]) {
+	
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            strcpy(grid[i][j], EMPTY);
+        }
+    }
+    
+} 
+
+void printGrid(char grid[SIZE][SIZE][6]) {
+	
+    for (int i = 0; i < SIZE; i++) {
+        printf("+ --- + --- + --- + --- +\n");
+        for (int j = 0; j < SIZE; j++) {
+            printf("|");
+            if (strcmp(grid[i][j], UNO) == 0) {
+            	printf("\x1b[32m%s\x1b[0m", UNO);	
+			}
+            else if (strcmp(grid[i][j], TRES) == 0){
+            	printf("\x1b[34m%s\x1b[0m", TRES);
+			}
+            else {
+            	printf("%s", EMPTY);
+			}
+        }
+        printf("|\n");
+    }
+    printf("+ --- + --- + --- + --- +\n");
+    
+}
+
+int CheckBoard(char grid[SIZE][SIZE][6]){
+	
+	int i, j, IsEmpty = -1; 
+	for (i = 0; i < SIZE; i++){
+		for (j = 0; j < SIZE; j++){
+			if (strcmp(grid[i][j], EMPTY) != 0){
+				IsEmpty = 1; 
+				return IsEmpty; 
+			}
+		}
+	}
+	IsEmpty = 0; 
+	return IsEmpty; 
+}
+
+int CheckIfWin(char grid[SIZE][SIZE][6], char *Player) {
+	
+	int Win = 0, i, j, count = 0; 
+	
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++){
+			if (strcmp(grid[i][j], Player) == 0){
+				count++; 
+			}
+		}
+	}
+	
+	if (count != 4){
+				return Win; //ala na di siya panalo hahaha 
+	} 
+			
+    if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[0][1], Player) == 0 && strcmp(grid[0][2], Player) == 0 && strcmp(grid[0][3], Player) == 0) {
+        	Win = 1; 
+			return Win;	
+	}
+    else if (strcmp(grid[3][0], Player) == 0 && strcmp(grid[3][1], Player) == 0 && strcmp(grid[3][2], Player) == 0 && strcmp(grid[3][3], Player) == 0) {
+        	Win = 1; 
+			return Win;	
+	}
+
+    
+    if (strcmp(grid[0][0], Player) == 0 && strcmp(grid[1][1], Player) == 0 && strcmp(grid[2][2], Player) == 0 && strcmp(grid[3][3], Player) == 0) {
+    	Win = 1; 
+		return Win;
+	}
+    else if (strcmp(grid[0][3], Player) == 0 && strcmp(grid[1][2], Player) == 0 && strcmp(grid[2][1], Player) == 0 && strcmp(grid[3][0], Player) == 0) { 
+    	Win = 1; 
+		return Win;
+	}
+	
+    return Win;
+}
+
+int playGame() {
+	
+    char grid[SIZE][SIZE][6];
+    initializeGrid(grid);
+    int moves = 0;
+    srand(time(0));
+    int over = 1; 
+    
+    while (over) {
+    	
+        printGrid(grid);
+        int row, col;
+
+        do {
+        	
+        printf("TRES %s's turn. Enter row (0-3): ", TRES);
+        scanf("%d", &row);
+        
+        printf("TRES %s. Enter column (0-3): ", TRES); 
+        scanf("%d", &col); 
+        
+	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0) {
+	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
+	        		printf("Invalid move! Try again.\n");
+				}
+				else if (strcmp(grid[row][col], EMPTY) != 0) {
+					printf("That position's been taken already. Please choose another one\n");
+				}
+	        }
+	        
+	    } while (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0); 
+        
+        strcpy(grid[row][col], TRES);
+        
+        if (CheckIfWin(grid, TRES)) {
+            printGrid(grid);
+            printf("TRES%s wins!\n", TRES);
+            over = 0; 
+            return over; 
+        }
+        
+        printGrid(grid);
+        
+        do {
+        	
+        printf("UNO %s's turn. Enter row (0-3): ", UNO);
+        scanf("%d", &row);
+        printf("UNO %s's turn. Enter column (0-3): ", UNO);
+        scanf("%d", &col);
+        
+	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0) {
+	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
+	        		printf("Invalid move! Try again.\n");
+				}
+				else if (strcmp(grid[row][col], EMPTY) != 0) {
+					printf("That position's been taken already. Please choose another one\n");
+				}
+	        }
+	        
+			 
+        } while (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0); 
+        
+        strcpy(grid[row][col], UNO); 
+        
+        if (CheckIfWin(grid, UNO)) {
+            printGrid(grid);
+            printf("UNO%s wins!\n", UNO);
+            over = 0; 
+            return over; 
+        }
+        
+        printGrid(grid);
+        
+        do {
+        	
+        printf("DOS %s's turn. Choose the row number of position you want to remove (0-3): ", DOS);
+        scanf("%d", &row);
+        printf("DOS %s's turn. Choose the column number of position you want to remove (0-3): ", DOS);
+        scanf("%d", &col);
+        
+	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) == 0) {
+	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
+	        		printf("Invalid move! Try again.\n");
+				}
+				else if (strcmp(grid[row][col], EMPTY) == 0) {
+					printf("This position is already empty. Please choose another one\n");
+				}
+	        }
+			 
+        } while (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) == 0); 
+        
+        printf("DOS %s removes the move at position (%d, %d)\n", DOS, row, col);
+    	strcpy(grid[row][col], EMPTY);
+        
+        if (CheckIfWin(grid, TRES)) { // Remove this pag di gumana 
+            printGrid(grid);
+            printf("TRES%s wins!\n", TRES);
+            over = 0; 
+            return over; 
+        }
+        
+        if (CheckIfWin(grid, UNO)) { //Remove this pag di gumana 
+            printGrid(grid);
+            printf("UNO%s wins!\n", UNO);
+            over = 0; 
+            return over; 
+        }
+        
+        if (!CheckBoard(grid)) {
+            printGrid(grid);
+            printf("DOS%s wins!\n", DOS);
+            over = 0; 
+            return over;  
+        }
+        
+
+    }
+    
+    printf("No more positions left!\nDOS%s wins!\n", DOS);
+    
+    return 0; 
+}
+
+int main() {
+	
+    playGame();
+    return 0;
+    
+}
