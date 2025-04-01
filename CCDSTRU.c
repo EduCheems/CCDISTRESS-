@@ -220,7 +220,7 @@ int playGame() {
 			 
         } while (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) == 0); 
         
-        printf("DOS %s removes the move at position (%d, %d)\n", DOS, row, col);
+        printf("DOS %s removes the move at position (%d, %d)\n", DOS, row+1, col+1);
     	strcpy(grid[row][col], EMPTY);		//remove DOS from the grid
 
 	if (CheckIfWin(grid, TRES)) {		//check if TRES wins
