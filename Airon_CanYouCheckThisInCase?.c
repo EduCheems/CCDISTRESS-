@@ -100,7 +100,6 @@ int playGame() {
 	
     char grid[SIZE][SIZE][6];
     initializeGrid(grid);
-    srand(time(0));		//random number generator
     int over = 1; 
     
     while (over) {
