@@ -124,11 +124,13 @@ int playGame() {
        
         do {			//TRES's turn
         	
-        printf("TRES %s's turn. Enter row (0-3): ", TRES);
+        printf("TRES %s's turn. Enter row (1-4): ", TRES);
         scanf("%d", &row);
-        
-        printf("TRES %s. Enter column (0-3): ", TRES); 
+        printf("TRES %s. Enter column (1-4): ", TRES); 
         scanf("%d", &col); 
+
+	row = row - 1;
+	col = col - 1;
         
 	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0) {		//validate move
 	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
@@ -164,6 +166,9 @@ int playGame() {
         scanf("%d", &row);
         printf("UNO %s's turn. Enter column (0-3): ", UNO);
         scanf("%d", &col);
+
+	row = row - 1;
+	col = col - 1;
         
 	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) != 0) {
 	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
@@ -200,6 +205,9 @@ int playGame() {
         scanf("%d", &row);
         printf("DOS %s's turn. Choose the column number of position you want to remove (0-3): ", DOS);
         scanf("%d", &col);
+
+	row = row - 1;
+	col = col - 1;
         
 	        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE || strcmp(grid[row][col], EMPTY) == 0) {
 	            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
