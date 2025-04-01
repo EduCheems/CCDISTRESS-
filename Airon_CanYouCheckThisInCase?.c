@@ -207,11 +207,11 @@ int playGame() {
 }
 
 int main() {
-	int over;
+	int over;	// signals if game is over or not
     over = playGame();	//start game
 
 	if (!over)
-		printf("\nThank you for playing!");
+		printf("\nThank you for playing!");	// if game is over, will print thank you message
     return 0;
     
 }
