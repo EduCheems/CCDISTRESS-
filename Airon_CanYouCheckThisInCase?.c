@@ -206,9 +206,9 @@ int playGame() {
     return 0; 
 }
 
-int main() {		//start game
+int main() {
 	
-    playGame();
+    playGame();	//start game
     return 0;
     
 }
